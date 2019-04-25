@@ -1,0 +1,11 @@
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.csprojAssemblyReference.cache
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.csproj.CoreCompileInputs.cache
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.AssemblyInfoInputs.cache
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.AssemblyInfo.cs
+/Users/sharadtanwar/Documents/github/CSPrep/bin/Debug/netcoreapp2.2/CSPrep.deps.json
+/Users/sharadtanwar/Documents/github/CSPrep/bin/Debug/netcoreapp2.2/CSPrep.runtimeconfig.json
+/Users/sharadtanwar/Documents/github/CSPrep/bin/Debug/netcoreapp2.2/CSPrep.runtimeconfig.dev.json
+/Users/sharadtanwar/Documents/github/CSPrep/bin/Debug/netcoreapp2.2/CSPrep.dll
+/Users/sharadtanwar/Documents/github/CSPrep/bin/Debug/netcoreapp2.2/CSPrep.pdb
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.dll
+/Users/sharadtanwar/Documents/github/CSPrep/obj/Debug/netcoreapp2.2/CSPrep.pdb
