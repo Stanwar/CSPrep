@@ -53,3 +53,49 @@ internal class Graph{
         }
     }
 }
+
+internal class Node {
+    internal int identifier {get;set;}
+    internal int weight {get;set;}
+    internal List<Node> neighbors = new List<Node>();
+    internal Node () {
+        
+    }
+
+    internal Node (int id, int w) {
+        identifier = id;
+        weight = w;
+    }
+}
+
+internal class GraphAdjList {
+    int vertices {get;set;}
+    Dictionary<int,Node> nodes = new Dictionary<int, Node>();
+    public GraphAdjList(int v) {
+        vertices = v;
+    }
+
+    public void AddVertex(int id, int weight){
+        Node vertex = new Node(id, weight);
+        nodes.Add(vertex.identifier, vertex);
+    }
+
+    public void AddEdge(int s, int d){
+        var source = nodes[s];
+        var destination = nodes[d];
+        source.neighbors.Add(destination);
+    }
+
+    public void PrintGraph(){
+        foreach (KeyValuePair<int, Node> node in nodes) {
+            var neighbors = node.Value.neighbors;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(node.Key + "-> ");
+            foreach (Node neighbor in neighbors) {
+                sb.Append(neighbor.identifier + " ");
+            }
+
+            Console.WriteLine(sb.ToString());
+        }
+    }
+}
