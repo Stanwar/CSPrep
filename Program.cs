@@ -6,6 +6,11 @@ namespace CSPrep
     {
         static void Main(string[] args)
         {
+            
+        }
+
+        // Graph Adjacency List with Node class
+        static void GraphAdjList(){
             GraphAdjList graph = new GraphAdjList(10);
             graph.AddVertex(1,20);
             graph.AddVertex(2,20);
@@ -21,11 +26,6 @@ namespace CSPrep
             graph.AddEdge(1,4);
             
             graph.PrintGraph();
-        }
-
-        // Graph Adjacency List with Node class
-        static void GraphAdjList(){
-
         }
         // Graph Adjacency Matrix 
         static void GraphAdjMatrix(){
