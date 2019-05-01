@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-class Node{
+class TreeNode{
     private int _Indentifier;
     public int Indentifier {
         get{
@@ -14,41 +14,47 @@ class Node{
         }
     }
 
-    public Node Left = null;
-    public Node Right = null;
+    public TreeNode Left = null;
+    public TreeNode Right = null;
 
-    public Node (int id){
+    public TreeNode (int id){
         Indentifier = id;
     }
 }
 
 class BinaryTree {
 
-    public void PrintInOrder(int[] arr){
+    public void PrintInOrder(TreeNode root){
 
+        if (root == null){
+            return;
+        }
+        PrintInOrder(root.Left);
+        Console.Write(root.Indentifier + " ");
+        PrintInOrder(root.Right);
     }
 
-    public void InsertLevelOrder(Node root, int key){
+    public void InsertLevelOrder(TreeNode root, int key){
         // We will use BFS. Define a queue 
-        Queue<Node> queue = new Queue<Node>();
+        Queue<TreeNode> queue = new Queue<TreeNode>();
         queue.Enqueue(root);
 
         // Go over queue till we find a place to add the new element 
         while (queue.Count > 0) {
-            Node node;
+            TreeNode node;
 
             // Get Top node.
             if (queue.TryDequeue(out node)){
                 
             }
             else{
-                node = new Node(key);
+                node = new TreeNode(key);
                 break;
             }
 
             // Check if the left node is null
             if (node.Left == null) {
-                node.Left = new Node(key);
+                node.Left = new TreeNode(key);
                 break;
             }
             // Otherwise add to queue
@@ -58,12 +64,83 @@ class BinaryTree {
 
             // Check if the right node is null
             if (node.Right == null) {
-                node.Right = new Node(key);
+                node.Right = new TreeNode(key);
                 break;
             }
             // Otherwise add to queue
             else{
                 queue.Enqueue(node.Right);
+            }
+        }
+    }
+
+    public void DeleteBinaryTree(TreeNode root, int key){
+
+        if (root == null || key == 0) {
+            Console.WriteLine("Please enter clean input");
+            return;
+        }
+        
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+
+        TreeNode toBeDeleted = null;
+        TreeNode rightMost = null;
+        bool isRoot = false;
+        bool isLeft = false;
+        bool isRight = false;
+
+        // Get right most node which will replace the node to be deleted 
+        while (queue.Count > 0) {
+            TreeNode node;
+            if (queue.TryDequeue(out node)) {
+                rightMost = node;
+                // Condition for root
+                if (node.Indentifier == root.Indentifier && node.Indentifier == key) {
+                    isRoot = true;
+                    toBeDeleted = node;
+                }
+
+                if (node.Left != null ){
+                    if (node.Left.Indentifier == key) {
+                        isLeft = true;
+                        toBeDeleted = node;
+                    }
+                    else{
+                        queue.Enqueue(node.Left);
+                    }
+                }
+
+                if (node.Right != null){
+                    if (node.Right.Indentifier == key) {
+                        isRight = true;
+                        toBeDeleted = node;
+                    }
+                    else{
+                        queue.Enqueue(node.Right);
+                    }
+                }
+            }
+
+            if (queue.Count == 0) {
+                node = null;
+            }
+        }
+
+        if (toBeDeleted == null) {
+            Console.WriteLine("Key not found!");
+        }
+
+        if (toBeDeleted != null && rightMost != null) {
+            if (isRoot) {
+                toBeDeleted.Indentifier = rightMost.Indentifier;
+            }
+
+            if (isLeft) {
+                toBeDeleted.Left.Indentifier = rightMost.Indentifier;
+            }
+            else if (isRight){
+                toBeDeleted.Right.Indentifier = rightMost.Indentifier;
             }
         }
     }
