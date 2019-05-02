@@ -2,25 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-class TreeNode{
-    private int _Indentifier;
-    public int Indentifier {
-        get{
-            return _Indentifier;
-        }
-
-        set{
-            _Indentifier = value;
-        }
-    }
-
-    public TreeNode Left = null;
-    public TreeNode Right = null;
-
-    public TreeNode (int id){
-        Indentifier = id;
-    }
-}
 
 class BinaryTree {
 
@@ -74,6 +55,7 @@ class BinaryTree {
         }
     }
 
+    // Delete a node from a binary tree
     public void DeleteBinaryTree(TreeNode root, int key){
 
         if (root == null || key == 0) {
@@ -143,5 +125,82 @@ class BinaryTree {
                 toBeDeleted.Right.Indentifier = rightMost.Indentifier;
             }
         }
+    }
+
+    // Check if the given tree is continuous or not. 
+    public bool TreeContinuous(TreeNode root){
+
+        if (root == null){
+            return true;
+        }
+
+        // Only one node. 
+        if (root.Left == null && root.Right == null) {
+            return true;
+        }
+
+        // If left node is null, check right
+        if (root.Left == null) {
+            return ( Math.Abs(root.Indentifier - root.Right.Indentifier) ==  1 ) && TreeContinuous(root.Right);
+        }
+
+        // If right node is null, check left
+        if (root.Right == null) {
+            return ( Math.Abs(root.Indentifier - root.Left.Indentifier) == 1 ) && TreeContinuous(root.Left);
+        }
+
+        // Check everything.
+        return (
+                Math.Abs(root.Indentifier - root.Left.Indentifier) == 1 
+             && Math.Abs(root.Indentifier - root.Right.Indentifier) == 1 
+             && TreeContinuous(root.Left)
+             && TreeContinuous(root.Right)
+             );
+    }
+
+    public TreeNode MirrorBinaryTree(TreeNode root){
+
+        if (root == null) {
+            return root;
+        }
+
+        TreeNode left = MirrorBinaryTree(root.Left);
+        TreeNode right = MirrorBinaryTree(root.Right);
+
+        var temp = left;
+        left = right;
+        right = temp;
+        
+        return root;
+    }
+
+    public TreeNode MirrorIterativeBinaryTree(TreeNode root){
+
+        if (root == null) {
+            return root;
+        }
+
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+        while (queue.Count > 0){
+            TreeNode node;
+            if (queue.TryDequeue(out node)) {
+                // Swap
+
+                TreeNode temp = node.Left;
+                node.Left = node.Right;
+                node.Right = temp;
+
+                if (node.Left != null){
+                    queue.Enqueue(node.Left);
+                }
+                
+                if (node.Right != null) {
+                    queue.Enqueue(node.Right);
+                }
+            }
+        }
+
+        return root;
     }
 }

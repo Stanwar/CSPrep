@@ -17,7 +17,7 @@ namespace CSPrep
 
             binaryTree.PrintInOrder(root);
             Console.WriteLine(" ");
-            binaryTree.DeleteBinaryTree(root, 8);
+            root = binaryTree.MirrorIterativeBinaryTree(root);
             Console.WriteLine(" ");
             binaryTree.PrintInOrder(root);
         }
