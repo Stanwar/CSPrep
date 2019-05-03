@@ -7,19 +7,8 @@ namespace CSPrep
         static void Main(string[] args)
         {
             BinaryTree binaryTree = new BinaryTree();
-            TreeNode root = new TreeNode(10);
-            root.Left = new TreeNode(5);
-            root.Right = new TreeNode(15);
-            root.Left.Left = new TreeNode(3);
-            root.Left.Right = new TreeNode(8);
-            root.Right.Left = new TreeNode(12);
-            root.Right.Right = new TreeNode(18);
-
-            binaryTree.PrintInOrder(root);
-            Console.WriteLine(" ");
-            root = binaryTree.MirrorIterativeBinaryTree(root);
-            Console.WriteLine(" ");
-            binaryTree.PrintInOrder(root);
+            string postFixString = "ab+ef*g*-";
+            binaryTree.ExpressionTree(postFixString);
         }
 
         // Graph Adjacency List with Node class

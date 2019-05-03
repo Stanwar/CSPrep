@@ -54,15 +54,15 @@ internal class Graph{
     }
 }
 
-internal class Node {
+internal class GraphNode {
     internal int identifier {get;set;}
     internal int weight {get;set;}
-    internal List<Node> neighbors = new List<Node>();
-    internal Node () {
+    internal List<GraphNode> neighbors = new List<GraphNode>();
+    internal GraphNode () {
         
     }
 
-    internal Node (int id, int w) {
+    internal GraphNode (int id, int w) {
         identifier = id;
         weight = w;
     }
@@ -70,28 +70,28 @@ internal class Node {
 
 internal class GraphAdjList {
     int vertices {get;set;}
-    Dictionary<int,Node> nodes = new Dictionary<int, Node>();
+    Dictionary<int,GraphNode> GraphNodes = new Dictionary<int, GraphNode>();
     public GraphAdjList(int v) {
         vertices = v;
     }
 
     public void AddVertex(int id, int weight){
-        Node vertex = new Node(id, weight);
-        nodes.Add(vertex.identifier, vertex);
+        GraphNode vertex = new GraphNode(id, weight);
+        GraphNodes.Add(vertex.identifier, vertex);
     }
 
     public void AddEdge(int s, int d){
-        var source = nodes[s];
-        var destination = nodes[d];
+        var source = GraphNodes[s];
+        var destination = GraphNodes[d];
         source.neighbors.Add(destination);
     }
 
     public void PrintGraph(){
-        foreach (KeyValuePair<int, Node> node in nodes) {
-            var neighbors = node.Value.neighbors;
+        foreach (KeyValuePair<int, GraphNode> GraphNode in GraphNodes) {
+            var neighbors = GraphNode.Value.neighbors;
             StringBuilder sb = new StringBuilder();
-            sb.Append(node.Key + "-> ");
-            foreach (Node neighbor in neighbors) {
+            sb.Append(GraphNode.Key + "-> ");
+            foreach (GraphNode neighbor in neighbors) {
                 sb.Append(neighbor.identifier + " ");
             }
 
